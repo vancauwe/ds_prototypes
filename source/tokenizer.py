@@ -15,4 +15,3 @@ def create_tokenizer(descriptions):
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(desc_list)
     return tokenizer
-
