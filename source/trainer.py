@@ -1,6 +1,7 @@
 from keras.utils import plot_model
 import numpy as np
 from tensorflow.keras.utils import pad_sequences, to_categorical
+from keras.layers import Input, Dense, LSTM, Embedding, Dropout
 
 from manipulate_s3objects import save_model
 
