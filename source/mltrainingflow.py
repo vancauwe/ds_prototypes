@@ -30,15 +30,15 @@ class MLTrainingFlow(FlowSpec):
         # Defining file paths and opening data 
         FILE_KEY_S3 = "Flickr8k.token.txt"
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
-        self.text_file_captions = self.open_text_file(self.FILE_PATH_S3, self.FS)
+        self.text_file_captions = open_text_file(self.FILE_PATH_S3, self.FS)
 
         FILE_KEY_S3 = "Flickr_8k.trainImages.txt"
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
-        self.file_train_images = self.open_text_file(self.FILE_PATH_S3, self.FS)
+        self.file_train_images = open_text_file(self.FILE_PATH_S3, self.FS)
 
         FILE_KEY_S3 = "features.p"
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
-        self.all_features = self.open_pickle_file(self.FILE_PATH_S3, self.FS)
+        self.all_features = open_pickle_file(self.FILE_PATH_S3, self.FS)
         
         self.next(self.preprocessing_step)
 
