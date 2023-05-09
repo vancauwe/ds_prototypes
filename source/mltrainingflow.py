@@ -55,7 +55,7 @@ class MLTrainingFlow(FlowSpec):
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
         self.all_features = self.open_pickle_file(self.FILE_PATH_S3, self.FS)
         
-        self.next(self.preprocessing)
+        self.next(self.preprocessing_step)
 
     
 
@@ -63,7 +63,7 @@ class MLTrainingFlow(FlowSpec):
 
 
     @step
-    def preprocessing(self):
+    def preprocessing_step(self):
         print('Preprocessing')
         self.all_descriptions, self.train_descriptions, self.train_features, self.tokenizer, self.vocab_size, self.max_length = preprocessing(self.text_file_captions, self.file_train_images, self.all_features)
         self.next(self.create_model)
