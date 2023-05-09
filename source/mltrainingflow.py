@@ -1,28 +1,13 @@
-#from manipulate_s3objects import create_filesystem, open_text_file, open_pickle_file
+from manipulate_s3objects import create_filesystem, open_text_file, open_pickle_file
 from trainer import define_model, train_model
 from preprocessing import preprocessing
 import mlflow
 import mlflow.keras
 from metaflow import FlowSpec, step
 import s3fs
-import pickle 
 import os 
 
 class MLTrainingFlow(FlowSpec):
-
-    def open_text_file(FILE_PATH_S3, FS):
-        with FS.open(FILE_PATH_S3, mode="rb") as file_in:
-            text_file = file_in.read().decode()
-        return text_file
-
-    def write_text_file(FILE_PATH_OUT_S3, FS, file_to_save):
-        with FS.open(FILE_PATH_OUT_S3, 'w') as file_out:
-            file_out.write(file_to_save)
-
-    def open_pickle_file(FILE_PATH_S3, FS):
-        with FS.open(FILE_PATH_S3, mode="rb") as file_in:
-            pickle_file = pickle.loads(file_in.read())
-        return pickle_file
 
     @step
     def start(self):
@@ -57,9 +42,6 @@ class MLTrainingFlow(FlowSpec):
         
         self.next(self.preprocessing_step)
 
-    
-
-    
 
 
     @step

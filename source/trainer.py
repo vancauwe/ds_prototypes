@@ -32,7 +32,7 @@ def define_model(vocab_size, max_length):
     #plot_model(model, to_file='model.png', show_shapes=True)
     return model
 
-def train_model(model, train_descriptions, train_features, tokenizer, max_length, vocab_size, FILE_PATH_OUT_S3, epochs = 10):
+def train_model(model, train_descriptions, train_features, tokenizer, max_length, vocab_size, FILE_PATH_OUT_S3, epochs = 2):
     steps = len(train_descriptions)
     with mlflow.start_run(run_name="MODEL_RUN") as run:
         for i in range(epochs):
