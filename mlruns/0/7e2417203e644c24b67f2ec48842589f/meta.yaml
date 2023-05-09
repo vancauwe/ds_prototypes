@@ -1,5 +1,5 @@
 artifact_uri: file:///home/onyxia/ds_prototypes/mlruns/0/7e2417203e644c24b67f2ec48842589f/artifacts
-end_time: null
+end_time: 1683622373155
 entry_point_name: ''
 experiment_id: '0'
 lifecycle_stage: active
@@ -10,6 +10,6 @@ source_name: ''
 source_type: 4
 source_version: ''
 start_time: 1683620324973
-status: 1
+status: 4
 tags: []
 user_id: onyxia

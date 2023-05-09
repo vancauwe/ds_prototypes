@@ -8,7 +8,6 @@ def create_filesystem():
     fs = s3fs.S3FileSystem(client_kwargs={'endpoint_url': S3_ENDPOINT_URL})
     global FS
     FS = fs
-    print(FS)
 
 def open_text_file(FILE_PATH_S3):
     with FS.open(FILE_PATH_S3, mode="rb") as file_in:

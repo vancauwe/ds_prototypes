@@ -1,0 +1,13 @@
+aliases: []
+creation_timestamp: 1683622328789
+current_stage: None
+description: null
+last_updated_timestamp: 1683622328789
+name: model_3.h5
+run_id: 7e2417203e644c24b67f2ec48842589f
+run_link: null
+source: file:///home/onyxia/ds_prototypes/mlruns/0/7e2417203e644c24b67f2ec48842589f/artifacts/models
+status: READY
+status_message: null
+user_id: null
+version: 1

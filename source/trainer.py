@@ -34,7 +34,7 @@ def define_model(vocab_size, max_length):
 
 def train_model(model, train_descriptions, train_features, tokenizer, max_length, vocab_size, FILE_PATH_OUT_S3, epochs = 10):
     steps = len(train_descriptions)
-    with mlflow.start_run() as run:
+    with mlflow.start_run(run_name="MODEL_RUN") as run:
         for i in range(epochs):
             generator = data_generator(train_descriptions, train_features, tokenizer, max_length, vocab_size)
             model.fit_generator(generator, epochs=1, steps_per_epoch= steps, verbose=1)
