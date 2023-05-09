@@ -8,6 +8,7 @@ def create_filesystem():
     fs = s3fs.S3FileSystem(client_kwargs={'endpoint_url': S3_ENDPOINT_URL})
     global FS
     FS = fs
+    print(FS)
 
 def open_text_file(FILE_PATH_S3):
     with FS.open(FILE_PATH_S3, mode="rb") as file_in:
@@ -24,6 +25,6 @@ def open_pickle_file(FILE_PATH_S3):
     return pickle_file
 
 def save_model(FILE_PATH_OUT_S3, model_name, model):
-    with fs.open(FILE_PATH_OUT_S3 + model_name, 'w') as file_out:
+    with FS.open(FILE_PATH_OUT_S3 + model_name, 'w') as file_out:
         file_out.save(model)
 

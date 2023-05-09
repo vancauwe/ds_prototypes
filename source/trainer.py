@@ -1,9 +1,12 @@
 from keras.utils import plot_model
 import numpy as np
 from tensorflow.keras.utils import pad_sequences, to_categorical
+from keras.layers import add
+from keras.models import Model, load_model
 from keras.layers import Input, Dense, LSTM, Embedding, Dropout
+import mlflow
 
-from manipulate_s3objects import save_model
+#from manipulate_s3objects import save_model
 
 
 # define the captioning model
@@ -26,16 +29,18 @@ def define_model(vocab_size, max_length):
     model.compile(loss='categorical_crossentropy', optimizer='adam')
     # summarize model
     print(model.summary())
-    plot_model(model, to_file='model.png', show_shapes=True)
+    #plot_model(model, to_file='model.png', show_shapes=True)
     return model
 
 def train_model(model, train_descriptions, train_features, tokenizer, max_length, vocab_size, FILE_PATH_OUT_S3, epochs = 10):
     steps = len(train_descriptions)
-    for i in range(epochs):
-        generator = data_generator(train_descriptions, train_features, tokenizer, max_length, vocab_size)
-        model.fit_generator(generator, epochs=1, steps_per_epoch= steps, verbose=1)
-        model_name = "model_" + str(i) + ".h5"
-        save_model(FILE_PATH_OUT_S3, model_name, model)
+    with mlflow.start_run() as run:
+        for i in range(epochs):
+            generator = data_generator(train_descriptions, train_features, tokenizer, max_length, vocab_size)
+            model.fit_generator(generator, epochs=1, steps_per_epoch= steps, verbose=1)
+            model_name = "model_" + str(i) + ".h5"
+            mlflow.keras.log_model(model, "models", registered_model_name=model_name)
+            #save_model(FILE_PATH_OUT_S3, model_name, model)
 
 
 
