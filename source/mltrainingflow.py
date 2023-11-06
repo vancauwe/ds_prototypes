@@ -1,4 +1,4 @@
-from manipulate_s3objects import create_filesystem, open_text_file, open_pickle_file
+from manipulate_s3objects import create_filesystem, open_text_file_metaflow, open_pickle_file_metaflow
 from trainer import define_model, train_model
 from preprocessing import preprocessing
 import mlflow
@@ -35,15 +35,15 @@ class MLTrainingFlow(FlowSpec):
         # Defining file paths and opening data 
         FILE_KEY_S3 = "Flickr8k.token.txt"
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
-        self.text_file_captions = open_text_file(self.FILE_PATH_S3, self.FS)
+        self.text_file_captions = open_text_file_metaflow(self.FILE_PATH_S3, self.FS)
 
         FILE_KEY_S3 = "Flickr_8k.trainImages.txt"
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
-        self.file_train_images = open_text_file(self.FILE_PATH_S3, self.FS)
+        self.file_train_images = open_text_file_metaflow(self.FILE_PATH_S3, self.FS)
 
         FILE_KEY_S3 = "features.p"
         self.FILE_PATH_S3 = BUCKET + "/" + FILE_KEY_S3
-        self.all_features = open_pickle_file(self.FILE_PATH_S3, self.FS)
+        self.all_features = open_pickle_file_metaflow(self.FILE_PATH_S3, self.FS)
         
         self.next(self.preprocessing_step)
 
