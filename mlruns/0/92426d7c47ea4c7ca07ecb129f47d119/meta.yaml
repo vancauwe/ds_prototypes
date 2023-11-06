@@ -1,0 +1,15 @@
+artifact_uri: file:///home/onyxia/ds_prototypes/mlruns/0/92426d7c47ea4c7ca07ecb129f47d119/artifacts
+end_time: 1699257758990
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 92426d7c47ea4c7ca07ecb129f47d119
+run_name: MODEL_RUN
+run_uuid: 92426d7c47ea4c7ca07ecb129f47d119
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1699257571054
+status: 4
+tags: []
+user_id: onyxia

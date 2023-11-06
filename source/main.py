@@ -6,7 +6,11 @@ import mlflow.keras
 
 # Create filesystem for S3 storage
 
-create_filesystem()
+# external S3
+#create_filesystem()
+
+# AWS S3
+create_filesystem(region="eu-west-3")
 
 BUCKET = "lvancauwe/image_caption_generator"
 
