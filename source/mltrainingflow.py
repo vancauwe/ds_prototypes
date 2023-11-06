@@ -16,9 +16,14 @@ class MLTrainingFlow(FlowSpec):
 
     @step
     def create_filesystem(self):
-        S3_ENDPOINT_URL = "https://" + os.environ["AWS_S3_ENDPOINT"]
-        print(S3_ENDPOINT_URL)
-        fs = s3fs.S3FileSystem(client_kwargs={'endpoint_url': S3_ENDPOINT_URL})
+        # for external S3
+        # S3_ENDPOINT_URL = "https://" + os.environ["AWS_S3_ENDPOINT"]
+        # print(S3_ENDPOINT_URL)
+        # fs = s3fs.S3FileSystem(client_kwargs={'endpoint_url': S3_ENDPOINT_URL})
+
+        # for AWS S3
+        # region needs to become a parameter in the future
+        fs = s3fs.S3FileSystem(client_kwargs={'region_name': "eu-west-3"})
         self.FS = fs
         self.next(self.open_files)
 
